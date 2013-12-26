@@ -10,6 +10,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
@@ -26,6 +28,11 @@ public class PlayerTracking {
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = Logger.getLogger(ModInfo.ID);
 		logger.setParent(FMLLog.getLogger());
+		
+		int blockId = 710;
+		TrackingBlock trackingBlock = new TrackingBlock(blockId, logger);
+        GameRegistry.registerBlock(trackingBlock, "TrackingBlock");
+        LanguageRegistry.addName(trackingBlock, "Tracking block");
 	}
 	
 	@EventHandler

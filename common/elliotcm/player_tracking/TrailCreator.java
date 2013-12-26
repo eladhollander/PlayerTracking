@@ -4,6 +4,8 @@ import java.util.EnumSet;
 import java.util.logging.Logger;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -18,7 +20,14 @@ public class TrailCreator implements IScheduledTickHandler {
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		EntityPlayer player = (EntityPlayer) tickData[0];
-		logger.info(String.format("Ticking player %s at X %s, Y %s, Z %s", player.username, player.posX, player.posY, player.posZ));
+		World world = player.worldObj;
+		
+		int playerX = MathHelper.floor_double(player.posX);
+		int playerZ = MathHelper.floor_double(player.posZ);
+		int worldHeight = world.getActualHeight();
+		int trackingBlockId = 710;
+		
+		world.setBlock(playerX, worldHeight - 1, playerZ, trackingBlockId);
 	}
 
 	@Override
