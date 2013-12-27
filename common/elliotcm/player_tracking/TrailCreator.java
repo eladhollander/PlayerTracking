@@ -23,11 +23,11 @@ public class TrailCreator implements IScheduledTickHandler {
 		World world = player.worldObj;
 		
 		int playerX = MathHelper.floor_double(player.posX);
+		int playerY = MathHelper.floor_double(player.posY);
 		int playerZ = MathHelper.floor_double(player.posZ);
-		int worldHeight = world.getActualHeight();
 		int trackingBlockId = 710;
 		
-		world.setBlock(playerX, worldHeight - 1, playerZ, trackingBlockId);
+		world.setBlock(playerX, playerY, playerZ, trackingBlockId);
 	}
 
 	@Override
