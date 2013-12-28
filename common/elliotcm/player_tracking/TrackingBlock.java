@@ -7,15 +7,20 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TrackingBlock extends Block {
 
 	public TrackingBlock(int blockId, Logger logger) {
 		super(blockId, buildTrackingBlockMaterial(logger));
 		
-		float f = 0.2F;
-		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
+		// Borrowed from lily pad
+        float f = 0.5F;
+        float f1 = 0.015625F;
+        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -58,8 +63,9 @@ public class TrackingBlock extends Block {
         return false;
     }
 
-    // Render like lillypads
-    public int getRenderType() {
-        return 23;
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int blockX, int blockY, int blockZ) {
+        return 16711935;
     }
+
 }

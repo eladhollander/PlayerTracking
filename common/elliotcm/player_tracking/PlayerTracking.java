@@ -31,7 +31,7 @@ public class PlayerTracking {
 		
 		int blockId = 710;
 		TrackingBlock trackingBlock = new TrackingBlock(blockId, logger);
-		trackingBlock.setUnlocalizedName("trackingBlock").setTextureName("elliotcmplayertracking:tracking_block").setBlockUnbreakable();
+		trackingBlock.setUnlocalizedName("trackingBlock").setTextureName("elliotcmplayertracking:footprints").setBlockUnbreakable();
         GameRegistry.registerBlock(trackingBlock, "TrackingBlock");
         LanguageRegistry.addName(trackingBlock, "Tracking block");
 	}
